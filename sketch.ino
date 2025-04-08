@@ -65,7 +65,7 @@ const int pinDHT = 5; //D1
 const int trigPin = 4; //D2
 const int echoPin = 0; //D3 // the ultrasonic sensor powered by 5v (or Vin if the esp powered by 5v)
 
-String serial_number = "1101";
+String serial_number = "id";
 bool offlineDataSent = false;
 unsigned long lastReconnectAttempt = 0;
 
@@ -181,7 +181,7 @@ void sendOfflineData() {
     String line = file.readStringUntil('\n');
     line.trim();
     if (line.length() > 0) {
-      client.publish("luckyharvi/offline", line.c_str());
+      client.publish("topic/subtopic", line.c_str());
     } else {
       Serial.println("No data to send");
     }
@@ -196,10 +196,10 @@ void reconnectMQTT() {
   Serial.print("Connecting to MQTT...");
   BearSSL::X509List serverTrustedCA(ca_cert);
   espClient.setTrustAnchors(&serverTrustedCA);
-  if (client.connect("ESP8266Lucky", mqtt_user, mqtt_pass)) {
+  if (client.connect("id", mqtt_user, mqtt_pass)) {
     Serial.println("\nMQTT connected!");
     digitalWrite(LED_BUILTIN, LOW);
-    client.publish("luckyharvi/status/1101", "online");
+    client.publish("topic/subtopic", "online");
     sendOfflineData();
   } else {
     Serial.println("\nMQTT connection failed.");
@@ -227,7 +227,7 @@ void publishOnline() {
   char buffer[256];
   serializeJson(jsonDoc, buffer);
 
-  client.publish("luckyharvi/online", buffer);
+  client.publish("topic/subtopic", buffer);
   Serial.print("Published: ");
   Serial.println(buffer);
 }
