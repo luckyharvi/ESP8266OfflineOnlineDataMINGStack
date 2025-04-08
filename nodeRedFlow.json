@@ -12,7 +12,7 @@
         "type": "mqtt in",
         "z": "2dc4f2b15fe7c339",
         "name": "",
-        "topic": "luckyharvi/online/#",
+        "topic": "topic/subtopic",
         "qos": "1",
         "datatype": "auto-detect",
         "broker": "55c05c340166d460",
