@@ -1,0 +1,1178 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 50,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 35
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "cegsf2yjah9fkc"
+            },
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\r\n  |> last()\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Temperature",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "super-light-green",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 4,
+          "y": 0
+        },
+        "id": 8,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> min()\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Lowest Temperature",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 35
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 8,
+          "x": 7,
+          "y": 0
+        },
+        "id": 3,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Temperature History",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": 60000,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 35
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 9,
+          "x": 15,
+          "y": 0
+        },
+        "id": 13,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: -30d)\r\n  |> filter(fn: (r) => r._measurement == \"dataOffline\")\r\n  |> filter(fn: (r) => \r\n    r._field == \"rtc\" or\r\n    r._field == \"temperature\" or\r\n    r._field == \"humidity\" or\r\n    r._field == \"distance\"\r\n  )\r\n  // 1) Pivot so we get columns: rtc, temperature, humidity, distance, etc.\r\n  |> pivot(\r\n    rowKey:[\"_time\"],\r\n    columnKey:[\"_field\"],\r\n    valueColumn:\"_value\"\r\n  )\r\n  // 2) Rename the original _time to something else\r\n  |> rename(columns: {_time: \"insertion_time\"})\r\n\r\n  // 3) Parse the \"rtc\" string into a Flux time\r\n  |> map(fn: (r) => ({\r\n    r with parsedTime: time(v: r.rtc)\r\n  }))\r\n\r\n  // 4) Rename parsedTime -> _time\r\n  |> rename(columns: {parsedTime: \"_time\"})\r\n\r\n  // 5) Shift _time by -7 hours (because the time got shifted again)\r\n  |> timeShift(duration: -7h, columns: [\"_time\"])\r\n\r\n  // 6) (Optional) drop the old rtc column if you dont need it\r\n  |> drop(columns: [\"rtc\"])\r\n  |> drop(columns: [\"insertion_time\"])\r\n  |> drop(columns: [\"_start\"])\r\n  |> drop(columns: [\"_stop\"])\r\n  |> drop(columns: [\"humidity\"])\r\n  |> drop(columns: [\"distance\"])\r\n\r\n  // Now you have:\r\n  //   insertion_time (original time),\r\n  //   _time (from your rtc field),\r\n  //   temperature, humidity, distance, etc.",
+            "refId": "A"
+          }
+        ],
+        "title": "Offline Temperature History",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "super-light-red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 4,
+          "y": 3
+        },
+        "id": 7,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> max()\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Peak Temperatures",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 90,
+            "min": 20,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "blue",
+                  "value": 75
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 0,
+          "y": 6
+        },
+        "id": 2,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> last()\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Humidity",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "super-light-green",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 4,
+          "y": 6
+        },
+        "id": 5,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> min()\r\n  |> yield(name: \"last\")\r\n  ",
+            "refId": "A"
+          }
+        ],
+        "title": "Lowest Humidity",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "blue",
+                  "value": 75
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 8,
+          "x": 7,
+          "y": 6
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Humidity History",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": 60000,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "blue",
+                  "value": 75
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 9,
+          "x": 15,
+          "y": 6
+        },
+        "id": 14,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: -30d)\r\n  |> filter(fn: (r) => r._measurement == \"dataOffline\")\r\n  |> filter(fn: (r) => \r\n    r._field == \"rtc\" or\r\n    r._field == \"temperature\" or\r\n    r._field == \"humidity\" or\r\n    r._field == \"distance\"\r\n  )\r\n  // 1) Pivot so we get columns: rtc, temperature, humidity, distance, etc.\r\n  |> pivot(\r\n    rowKey:[\"_time\"],\r\n    columnKey:[\"_field\"],\r\n    valueColumn:\"_value\"\r\n  )\r\n  // 2) Rename the original _time to something else\r\n  |> rename(columns: {_time: \"insertion_time\"})\r\n\r\n  // 3) Parse the \"rtc\" string into a Flux time\r\n  |> map(fn: (r) => ({\r\n    r with parsedTime: time(v: r.rtc)\r\n  }))\r\n\r\n  // 4) Rename parsedTime -> _time\r\n  |> rename(columns: {parsedTime: \"_time\"})\r\n\r\n  // 5) Shift _time by -7 hours (because the time got shifted again)\r\n  |> timeShift(duration: -7h, columns: [\"_time\"])\r\n\r\n  // 6) (Optional) drop the old rtc column if you dont need it\r\n  |> drop(columns: [\"rtc\"])\r\n  |> drop(columns: [\"insertion_time\"])\r\n  |> drop(columns: [\"_start\"])\r\n  |> drop(columns: [\"_stop\"])\r\n  |> drop(columns: [\"humidity\"])\r\n  |> drop(columns: [\"temperature\"])\r\n\r\n  // Now you have:\r\n  //   insertion_time (original time),\r\n  //   _time (from your rtc field),\r\n  //   temperature, humidity, distance, etc.",
+            "refId": "A"
+          }
+        ],
+        "title": "Offline Humidity History",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "super-light-red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 4,
+          "y": 9
+        },
+        "id": 6,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> max()\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Peak Humidity",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "max": 400,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "blue",
+                  "value": 25
+                },
+                {
+                  "color": "green",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "cm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 4,
+          "x": 0,
+          "y": 12
+        },
+        "id": 9,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "sizing": "auto"
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"distance\")\r\n  |> last()\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Distance",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "super-light-green",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "cm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 4,
+          "y": 12
+        },
+        "id": 11,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"distance\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> min()\r\n  |> yield(name: \"last\")\r\n  ",
+            "refId": "A"
+          }
+        ],
+        "title": "Lowest Distance",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 50,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "blue",
+                  "value": 25
+                },
+                {
+                  "color": "green",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "cm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 8,
+          "x": 7,
+          "y": 12
+        },
+        "id": 10,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"distance\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Distance History",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": 60000,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "blue",
+                  "value": 25
+                },
+                {
+                  "color": "green",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "cm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 9,
+          "x": 15,
+          "y": 12
+        },
+        "id": 15,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: -30d)\r\n  |> filter(fn: (r) => r._measurement == \"dataOffline\")\r\n  |> filter(fn: (r) => \r\n    r._field == \"rtc\" or\r\n    r._field == \"temperature\" or\r\n    r._field == \"humidity\" or\r\n    r._field == \"distance\"\r\n  )\r\n  // 1) Pivot so we get columns: rtc, temperature, humidity, distance, etc.\r\n  |> pivot(\r\n    rowKey:[\"_time\"],\r\n    columnKey:[\"_field\"],\r\n    valueColumn:\"_value\"\r\n  )\r\n  // 2) Rename the original _time to something else\r\n  |> rename(columns: {_time: \"insertion_time\"})\r\n\r\n  // 3) Parse the \"rtc\" string into a Flux time\r\n  |> map(fn: (r) => ({\r\n    r with parsedTime: time(v: r.rtc)\r\n  }))\r\n\r\n  // 4) Rename parsedTime -> _time\r\n  |> rename(columns: {parsedTime: \"_time\"})\r\n\r\n  // 5) Shift _time by -7 hours (because the time got shifted again)\r\n  |> timeShift(duration: -7h, columns: [\"_time\"])\r\n\r\n  // 6) (Optional) drop the old rtc column if you dont need it\r\n  |> drop(columns: [\"rtc\"])\r\n  |> drop(columns: [\"insertion_time\"])\r\n  |> drop(columns: [\"_start\"])\r\n  |> drop(columns: [\"_stop\"])\r\n  |> drop(columns: [\"humidity\"])\r\n  |> drop(columns: [\"temperature\"])\r\n\r\n  // Now you have:\r\n  //   insertion_time (original time),\r\n  //   _time (from your rtc field),\r\n  //   temperature, humidity, distance, etc.",
+            "refId": "A"
+          }
+        ],
+        "title": "Offline Distance History",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "cegsf2yjah9fkc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "super-light-red",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "cm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 4,
+          "y": 15
+        },
+        "id": 12,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "value",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.6.0",
+        "targets": [
+          {
+            "query": "from(bucket: \"fixdgnultrasonic\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"dataOnline\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"distance\")\r\n  |> filter(fn: (r) => r[\"device_id\"] == \"1101\")\r\n  |> max()\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Peak Distance",
+        "type": "stat"
+      }
+    ],
+    "preload": false,
+    "refresh": "auto",
+    "schemaVersion": 41,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Fix Dashboard",
+    "uid": "begsfl5ysu39ca",
+    "version": 62
+  }
