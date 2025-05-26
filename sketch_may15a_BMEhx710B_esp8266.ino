@@ -66,8 +66,6 @@ String serial_number = "1101";
 bool offlineDataSent = false;
 unsigned long lastReconnectAttempt = 0;
 
-float P0_calibrated;
-
 HX711 scale;
 
 // known calibration points:
