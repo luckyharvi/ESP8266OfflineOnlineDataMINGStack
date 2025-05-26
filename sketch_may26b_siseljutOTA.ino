@@ -17,13 +17,13 @@
 #define SCK  D1  
 
 // Wi-Fi and MQTT credentials
-const char* ssid = "SISELJUT";
-const char* password = "setubabakan";
+const char* ssid = "";
+const char* password = "";
 
 // Emqx
-const char* mqtt_server = "f225b61b.ala.asia-southeast1.emqxsl.com";
-const char* mqtt_user = "luckyharvi";
-const char* mqtt_pass = "12345";
+const char* mqtt_server = "....emqxsl.com";
+const char* mqtt_user = "";
+const char* mqtt_pass = "";
 
 // NTP Server settings
 const char *ntp_server = "pool.ntp.org";     // Default NTP server
