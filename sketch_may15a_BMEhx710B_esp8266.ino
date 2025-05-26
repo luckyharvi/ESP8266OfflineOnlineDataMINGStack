@@ -14,16 +14,16 @@
 #define SCK  D1  
 
 // Wi-Fi and MQTT credentials
-const char* ssid = "ACER";
-const char* password = "bucabuca";
+const char* ssid = "";
+const char* password = "";
 
 // Emqx
-const char* mqtt_server = "f225b61b.ala.asia-southeast1.emqxsl.com";
-const char* mqtt_user = "luckyharvi";
-const char* mqtt_pass = "12345";
+const char* mqtt_server = "....emqxsl.com";
+const char* mqtt_user = "";
+const char* mqtt_pass = "";
 
 // NTP Server settings
-const char *ntp_server = "0.id.pool.ntp.org";     // Default NTP server
+const char *ntp_server = "pool.ntp.org";     // Default NTP server
 const long gmt_offset_sec = 7 * 3600;            // GMT offset in seconds (GMT+7 for Jakarta)
 const int daylight_offset_sec = 0;        // Daylight saving time offset in seconds
 
