@@ -21,9 +21,9 @@ const char* ssid = "SISELJUT";
 const char* password = "setubabakan";
 
 // Emqx
-const char* mqtt_server = "f225b61b.ala.asia-southeast1.emqxsl.com";
-const char* mqtt_user = "luckyharvi";
-const char* mqtt_pass = "12345";
+const char* mqtt_server = "";
+const char* mqtt_user = "";
+const char* mqtt_pass = "";
 
 // NTP Server settings
 const char *ntp_server = "pool.ntp.org";     // Default NTP server
