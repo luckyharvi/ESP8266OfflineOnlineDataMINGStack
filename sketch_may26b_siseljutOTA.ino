@@ -21,7 +21,7 @@ const char* ssid = "";
 const char* password = "";
 
 // Emqx
-const char* mqtt_server = "....emqxsl.com";
+const char* mqtt_server = "";
 const char* mqtt_user = "";
 const char* mqtt_pass = "";
 
