@@ -6,8 +6,6 @@
 #include <ArduinoJson.h>
 #include <Adafruit_BME280.h>
 #include "HX711.h"
-#include <ESP8266mDNS.h>
-#include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 
 #define RTC_SDA D6  // Using D6 as SDA (GPIO12)
