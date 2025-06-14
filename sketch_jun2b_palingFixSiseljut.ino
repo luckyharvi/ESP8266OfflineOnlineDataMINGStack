@@ -288,7 +288,7 @@ void reconnectMQTT() {
   espClient.setTrustAnchors(&serverTrustedCA);
   if (client.connect("ESP8266Lucky", mqtt_user, mqtt_pass)) {
     Serial.print("MQTT connected! ");
-    client.publish("luckyharvi/status/1101", "online");
+    client.publish("luckyharvi/status/esp", "online");
     sendOfflineData();
   } else {
     Serial.println("MQTT connection failed.");
